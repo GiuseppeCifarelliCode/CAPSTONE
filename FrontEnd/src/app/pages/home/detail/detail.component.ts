@@ -117,6 +117,6 @@ export class DetailComponent {
 
   buyTicket(){
     this.attendance.Ticket = true
-    this.homeSvc.BuyTicket(this.attendance)
+    this.homeSvc.BuyTicket(this.attendance).subscribe()
   }
 }
