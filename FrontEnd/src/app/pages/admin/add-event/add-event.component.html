@@ -1,0 +1,107 @@
+<!-- <form *ngIf="eventForm" [formGroup]="eventForm" class="d-flex flex-column form-control">
+  <input placeholder="Name" formControlName="Name">
+
+  <input placeholder="Description" formControlName="Description">
+  <select formControlName="IdCategory">
+    <option value="" disabled>Select a Category</option>
+    <option *ngFor="let category of categories" [value]='category.IdCategory'>{{ category.Name }}</option>
+  </select>
+  <input placeholder="Place" formControlName="Place">
+  <input type="datetime-local" placeholder="Start Date" formControlName="StartDate">
+  <input type="datetime-local" placeholder="End Date" formControlName="EndDate">
+  <input placeholder="Link" formControlName="Link">
+  <input type="file" placeholder="Cover Image" formControlName="Cover" (change)="onFileSelected($event, 'Cover')" accept="image/*">
+  <input type="file" placeholder="Image" formControlName="Img" (change)="onFileSelected($event, 'Img')" accept="image/*">
+  <input type="file" placeholder="Background Image" formControlName="BackGround" (change)="onFileSelected($event, 'BackGround')" accept="image/*">
+  <label for="Free">Is this Event Free?</label>
+  <input type="checkbox" placeholder="Free" formControlName="Free">
+  <input type="number" placeholder="Ticket Price" formControlName="TicketPrice">
+
+  <div *ngIf="errorMessage!=''">{{errorMessage}}</div>
+<button class="btn btn-primary" (click)="Add()">Sign Up</button>
+</form> -->
+
+<div class="container m-4 w-50 mx-auto">
+  <form [formGroup]="eventForm">
+    <!-- 2 column grid layout with text inputs for the name and description -->
+    <div class="row mb-4">
+      <div class="col">
+        <mdb-form-control>
+          <input mdbInput type="text" id="Name" class="form-control" formControlName="Name" />
+          <label mdbLabel class="form-label" for="Name">Nome Evento</label>
+        </mdb-form-control>
+      </div>
+      <div class="col">
+        <mdb-form-control class="form-outline">
+          <input mdbInput type="text" id="Description" class="form-control" formControlName="Description" />
+          <label mdbLabel class="form-label" for="Description">Descrizione</label>
+        </mdb-form-control>
+      </div>
+    </div>
+
+    <!-- Category Select -->
+    <select formControlName="IdCategory" class="form-outline my-2">
+      <option value="" disabled>Select a Category</option>
+      <option *ngFor="let category of categories" [value]='category.IdCategory'>{{ category.Name }}</option>
+    </select>
+
+    <!-- Place input -->
+    <mdb-form-control>
+      <input mdbInput type="text" id="Place" class="form-control" formControlName="Place" />
+      <label mdbLabel class="form-label" for="Place">Place</label>
+    </mdb-form-control>
+
+    <!-- Start & End Date input -->
+    <div class="row my-4">
+      <div class="col">
+        <mdb-form-control>
+          <input mdbInput type="datetime-local" id="StartDate" class="form-control" formControlName="StartDate" />
+          <label mdbLabel class="form-label" for="StartDate">Start Date</label>
+        </mdb-form-control>
+      </div>
+      <div class="col">
+        <mdb-form-control class="form-outline">
+          <input mdbInput type="datetime-local" id="EndDate" class="form-control" formControlName="EndDate" />
+          <label mdbLabel class="form-label" for="EndDate">End Date</label>
+        </mdb-form-control>
+      </div>
+    </div>
+
+    <!-- Link input -->
+    <mdb-form-control>
+      <input mdbInput type="text" id="Link" class="form-control" formControlName="Link" />
+      <label mdbLabel class="form-label" for="Link">Link</label>
+    </mdb-form-control>
+
+
+    <!-- Files input -->
+
+    <label class="form-label mt-4" for="Cover">Cover</label>
+    <input type="file" class="form-control mb-4" id="Cover" formControlName="Cover"  (change)="onFileSelected($event,'Cover')" accept="image/*"/>
+
+    <label class="form-label" for="Img">Image</label>
+    <input type="file" class="form-control mb-4" id="Img" formControlName="Img"  (change)="onFileSelected($event,'Img')" accept="image/*"/>
+
+    <label class="form-label" for="BackGround">BackGround</label>
+    <input type="file" class="form-control mb-4" id="BackGround" formControlName="BackGround"  (change)="onFileSelected($event,'BackGround')" accept="image/*"/>
+
+    <!-- Free checkbox -->
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input mdbCheckbox class="form-check-input me-2" type="checkbox" value="" id="Free" [checked]="true" formControlName="Free" />
+      <label class="form-check-label" for="Free">
+        L'evento è gratuito?
+      </label>
+    </div>
+
+     <!-- Price input -->
+  <mdb-form-control class="form-outline mb-4">
+    <input mdbInput type="number" id="TicketPrice" class="form-control" formControlName="TicketPrice"/>
+    <label mdbLabel class="form-label" for="TicketPrice">Prezzo</label>
+  </mdb-form-control>
+
+  <div *ngIf="errorMessage!=''">{{errorMessage}}</div>
+    <!-- Submit button -->
+    <button mdbRipple type="submit" class="btn btn-primary btn-block mb-4" (click)="Add()">Salva Evento</button>
+  </form>
+</div>
+

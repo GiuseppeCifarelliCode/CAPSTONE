@@ -1,0 +1,32 @@
+<div class="container m-4 w-50 mx-auto">
+  <form [formGroup]="addCategoryForm">
+    <!-- 2 column grid layout with text inputs for the name and submit button -->
+    <div class="row mb-4">
+      <div class="col">
+        <mdb-form-control>
+          <input mdbInput type="text" id="Name" class="form-control" formControlName="Name" />
+          <label mdbLabel class="form-label" for="Name">Categoria</label>
+        </mdb-form-control>
+      </div>
+      <div class="col">
+        <mdb-form-control class="form-outline">
+          <button class="btn btn-primary" (click)="Add()">Aggiungi</button>
+        </mdb-form-control>
+      </div>
+    </div>
+
+<h4 class="text-center mt-2">Tabella Categorie</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="text-center">#Id</th>
+      <th class="text-center">Categoria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of categories">
+      <td class="text-center">{{item.IdCategory}}</td>
+      <td class="text-center">{{item.Name}}</td>
+    </tr>
+  </tbody>
+</table>

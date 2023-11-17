@@ -1,0 +1,48 @@
+<div class="row container-fluid">
+  <div class="col-md-8 mt-2">
+    <div class="d-flex justify-content-evenly align-items-center">
+      <div>
+        <i class="fas fa-search mx-2 rounded-circle p-1 text-bg-primary"></i>
+      <input type="date" (change)="searchByDate($event)">
+    </div>
+    <div>
+      <i class="fas fa-filter mx-2 rounded-circle p-1 text-bg-primary"></i>
+      <select (change)="searchByCategory($event)">
+        <option value="" disabled>Select a Category</option>
+        <option *ngFor="let category of category" [value]='category.IdCategory'>{{ category.Name }}</option>
+      </select>
+    </div>
+    </div>
+    <h3 class="text-center">{{title}}</h3>
+    <div *ngFor="let item of event" class="m-2">
+      <div class="card d-flex flex-column flex-md-row">
+        <img [src]="item.Cover" class="card-img-top w-25" [alt]="item.Name" />
+        <div class="card-body">
+          <h5 class="card-title">{{item.Name}}</h5>
+          <div *ngFor="let cat of category">
+            <p *ngIf="item.IdCategory == cat.IdCategory" class="card-text">{{cat.Name}}</p>
+          </div>
+          <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{item.Place}}</p>
+          <p class="card-text"><i class="far fa-calendar-alt"></i> {{item.StartDate | date: 'dd/MM/yyyy HH:mm'}}</p>
+          <p *ngIf="item.Free" class="card-text fw-bold">Gratuito</p>
+          <p *ngIf="!item.Free" class="card-text fw-bold">Costo: {{item.TicketPrice | currency:'EUR':'symbol':'1.2-2'}}</p>
+          <p *ngIf="user && isAttending(item.IdEvent)" class="fw-bold">Stai partecipando a questo Evento</p>
+          <button *ngIf="user && !isAttending(item.IdEvent)" class="btn btn-primary m-2" (click)="addAttendance(item.IdEvent)">Partecipa</button>
+          <a [routerLink]="'event/' + item.IdEvent" class="btn btn-primary m-2">Dettaglio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-none d-md-block col-md-4 my-2">
+    <h3 class="text-center">Prossimi Eventi</h3>
+    <div *ngFor="let item of nextEvents" class="mt-2">
+      <div class="card d-flex flex-row">
+        <div class="card-body">
+          <h5 class="card-title">{{item.Name}}</h5>
+          <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{item.Place}}</p>
+          <p class="card-text"><i class="far fa-calendar-alt"></i> {{item.StartDate | date: 'dd/MM/yyyy HH:mm'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

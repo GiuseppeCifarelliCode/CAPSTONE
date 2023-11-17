@@ -1,0 +1,102 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" routerLink="/home">
+      <img
+        src="../../../../assets/logo.png"
+        height="50"
+        alt=""
+        loading="lazy"
+        style="margin-top: -1px;"
+        class="rounded-circle"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="buttonsNav.toggle()"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div
+      class="collapse navbar-collapse"
+      id="navbarButtonsExample"
+      mdbCollapse
+      #buttonsNav="mdbCollapse"
+    >
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="home">Home</a>
+        </li>
+        <li *ngIf="user" class="nav-item">
+          <a class="nav-link" href="ticketList">Miei biglietti</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about">About Us</a>
+        </li>
+        <li *ngIf="user?.Role=='SuperAdmin'" class="nav-item">
+          <a class="nav-link" href="admin/addEvent">Aggiungi Evento</a>
+        </li>
+        <li *ngIf="user?.Role=='SuperAdmin'" class="nav-item">
+          <a class="nav-link" href="admin/addCategory">Aggiungi Categoria</a>
+        </li>
+      </ul>
+      <!-- Right links -->
+
+      <div *ngIf="!logged" class="d-flex align-items-center">
+        <button type="button" class="btn btn-link px-3 me-2">
+          <a routerLink="/auth/login" routerLinkActive="active" class="nav-link" aria-current="page">Login</a>
+        </button>
+        <button type="button" class="btn btn-primary me-3">
+          <a routerLink="/auth/signUp" routerLinkActive="active" class="nav-link" aria-current="page">Sign Up For Free</a>
+        </button>
+      </div>
+      <div class="d-flex align-items-center">
+        <ul *ngIf="user" class="navbar-nav mx-2">
+          <!-- Avatar -->
+          <li mdbDropdown class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle d-flex align-items-center"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              mdbDropdownToggle
+              aria-expanded="false"
+            >
+              <img
+                src="../../../../assets/user.png"
+                class="rounded-circle"
+                height="22"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+            <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="#">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Settings</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <button *ngIf="logged" type="button" class="btn btn-primary me-3" (click)="logout()" >
+          Logout
+        </button>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
