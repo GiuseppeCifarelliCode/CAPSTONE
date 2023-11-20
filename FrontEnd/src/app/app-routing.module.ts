@@ -4,10 +4,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { TicketListComponent } from './pages/ticket-list/ticket-list.component';
 import { AboutComponent } from './pages/about/about.component';
+import { StartComponent } from './pages/start/start.component';
 
 const routes: Routes = [
   {path: '',
-   component: HomeComponent,
+   component: StartComponent,
+   pathMatch:'full'
+  },
+  {
+    path:'start',
+    component: StartComponent
   },
   {
     path:'home',

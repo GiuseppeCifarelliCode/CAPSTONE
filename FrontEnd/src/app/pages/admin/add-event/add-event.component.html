@@ -1,26 +1,3 @@
-<!-- <form *ngIf="eventForm" [formGroup]="eventForm" class="d-flex flex-column form-control">
-  <input placeholder="Name" formControlName="Name">
-
-  <input placeholder="Description" formControlName="Description">
-  <select formControlName="IdCategory">
-    <option value="" disabled>Select a Category</option>
-    <option *ngFor="let category of categories" [value]='category.IdCategory'>{{ category.Name }}</option>
-  </select>
-  <input placeholder="Place" formControlName="Place">
-  <input type="datetime-local" placeholder="Start Date" formControlName="StartDate">
-  <input type="datetime-local" placeholder="End Date" formControlName="EndDate">
-  <input placeholder="Link" formControlName="Link">
-  <input type="file" placeholder="Cover Image" formControlName="Cover" (change)="onFileSelected($event, 'Cover')" accept="image/*">
-  <input type="file" placeholder="Image" formControlName="Img" (change)="onFileSelected($event, 'Img')" accept="image/*">
-  <input type="file" placeholder="Background Image" formControlName="BackGround" (change)="onFileSelected($event, 'BackGround')" accept="image/*">
-  <label for="Free">Is this Event Free?</label>
-  <input type="checkbox" placeholder="Free" formControlName="Free">
-  <input type="number" placeholder="Ticket Price" formControlName="TicketPrice">
-
-  <div *ngIf="errorMessage!=''">{{errorMessage}}</div>
-<button class="btn btn-primary" (click)="Add()">Sign Up</button>
-</form> -->
-
 <div class="container m-4 w-50 mx-auto">
   <form [formGroup]="eventForm">
     <!-- 2 column grid layout with text inputs for the name and description -->
@@ -40,10 +17,13 @@
     </div>
 
     <!-- Category Select -->
-    <select formControlName="IdCategory" class="form-outline my-2">
+    <mdb-form-control>
+    <select formControlName="IdCategory" id="Category" class="form-outline my-2 form-control">
       <option value="" disabled>Select a Category</option>
       <option *ngFor="let category of categories" [value]='category.IdCategory'>{{ category.Name }}</option>
     </select>
+    <label mdbLabel class="form-label" for="Category">Category</label>
+  </mdb-form-control>
 
     <!-- Place input -->
     <mdb-form-control>
@@ -54,15 +34,15 @@
     <!-- Start & End Date input -->
     <div class="row my-4">
       <div class="col">
-        <mdb-form-control>
+        <label class="form-label" for="StartDate">Start Date</label>
+        <mdb-form-control class="form-outline mb-4">
           <input mdbInput type="datetime-local" id="StartDate" class="form-control" formControlName="StartDate" />
-          <label mdbLabel class="form-label" for="StartDate">Start Date</label>
         </mdb-form-control>
       </div>
       <div class="col">
+        <label class="form-label" for="EndDate">End Date</label>
         <mdb-form-control class="form-outline">
           <input mdbInput type="datetime-local" id="EndDate" class="form-control" formControlName="EndDate" />
-          <label mdbLabel class="form-label" for="EndDate">End Date</label>
         </mdb-form-control>
       </div>
     </div>

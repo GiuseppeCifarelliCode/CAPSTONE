@@ -3,7 +3,8 @@
   <div class="card-body">
     <h5 class="card-title">{{event.Name}}</h5>
     <div *ngFor="let cat of category">
-      <p *ngIf="event.IdCategory == cat.IdCategory" class="card-text">{{cat.Name}}</p>
+      <p *ngIf="event.IdCategory == cat.IdCategory" class="card-text d-inline-block p-1 rounded-5" [class]="cat.Name">
+        {{cat.Name}}</p>
     </div>
     <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{event.Place}}</p>
 
@@ -11,19 +12,21 @@
     <p class="card-text">{{event.Description}}</p>
     <p *ngIf="event.Free" class="card-text fw-bold">Gratuito</p>
     <p *ngIf="!event.Free" class="card-text fw-bold">Costo: {{event.TicketPrice | currency:'EUR':'symbol':'1.2-2'}}</p>
-    <button *ngIf="user && !attendance" class="btn btn-primary m-2" (click)="addAttendance(event.IdEvent)">Partecipa</button>
+    <button *ngIf="user && !attendance" class="btn btn-primary m-2"
+      (click)="addAttendance(event.IdEvent)">Partecipa</button>
 
     <p *ngIf="attendance && attendance.Ticket == true" class="fw-bold"> Hai già acquistato il biglietto</p>
     <!-- Button trigger modal -->
-    <button *ngIf="!event.Free && attendance && attendance.Ticket == false" type="button" class="btn btn-primary" data-mdb-toggle="modal"
-      data-mdb-target="#staticBackdrop">
+    <button *ngIf="!event.Free && attendance && attendance.Ticket == false" type="button" class="btn btn-primary"
+      data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">
       Acquista Ticket
     </button>
 
 
     <!-- Modal -->
-    <div *ngIf="!event.Free && attendance && attendance.Ticket == false" class="modal fade" id="staticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div *ngIf="!event.Free && attendance && attendance.Ticket == false" class="modal fade" id="staticBackdrop"
+      data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+      aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -55,48 +58,103 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Chiudi</button>
-            <button type="button" class="btn btn-primary" data-mdb-dismiss="modal" (click)="buyTicket()">Acquista</button>
+            <button type="button" class="btn btn-primary" data-mdb-dismiss="modal"
+              (click)="buyTicket()">Acquista</button>
           </div>
         </div>
       </div>
     </div>
-    </div>
   </div>
+</div>
 
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#collapseOne"
-        aria-expanded="false"
-        aria-controls="collapseOne"
-        (click)="getReviews()"
-      >
+      <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne"
+        aria-expanded="false" aria-controls="collapseOne" (click)="getReviews()">
         Visualizza Recensioni
       </button>
     </h2>
-    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+      data-mdb-parent="#accordionExample">
       <div class="accordion-body">
         <p class="fw-bold" *ngIf="reviews && reviews.length == 0">{{reviewMessage}}</p>
         <div *ngIf="reviews && reviews.length > 0">
           <div *ngFor="let item of reviews" class="card p-2 my-2">
             <div class="row">
               <div class="col-2 d-flex flex-column justify-content-center align-items-center">
-                  <h5>{{getUserName(item.IdUser)}}</h5>
-            <img
-            src="../../../../assets/user.png"
-            class="rounded-circle w-25"
-            alt="user"
-            loading="lazy"
-          />
+                <h5>{{getUserName(item.IdUser)}}</h5>
+                <img src="../../../../assets/user.png" class="rounded-circle w-25" alt="user" loading="lazy" />
+              </div>
+              <div class="col d-flex flex-row justify-content-between align-items-center rounded-5 text-bg-info p-2 m-2">
+                <p>{{item.Comment}}</p>
+                <div>
+                  <!-- Button trigger edit modal -->
+                  <button *ngIf="getUserName(item.IdUser) == user.Username" class="btn btn-outline-dark mx-1"
+                    data-mdb-toggle="modal" data-mdb-target="#EditBackdrop" (click)="takeReview(item)">
+                    <i class="fas fa-pen"></i>
+                  </button>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="EditBackdrop"
+      data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modifica Recensione</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="col card text-bg-info p-2 m-2">
-            <p>{{item.Comment}}</p>
+          <div class="modal-body">
+            <form [formGroup]="editForm">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Recensione</span>
+                <input *ngIf="editReview" type="text" class="form-control" aria-label="Comment" [value]="editReview.Comment"
+                  aria-describedby="basic-addon1" formControlName="Comment" />
+              </div>
+            </form>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Chiudi</button>
+            <button type="button" class="btn btn-primary" data-mdb-dismiss="modal" (click)="EditReview()">Salva modifica</button>
           </div>
+        </div>
+      </div>
+    </div>
+                  <!-- Button trigger delete modal -->
+                  <button *ngIf="getUserName(item.IdUser) == user.Username" class="btn btn-outline-dark mx-1"
+                    data-mdb-toggle="modal" data-mdb-target="#DeleteBackdrop">
+                    <i class="fas fa-times"></i>
+                  </button>
+
+                   <!-- Delete Modal -->
+    <div class="modal fade" id="DeleteBackdrop"
+    data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Elimina Recensione</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Recensione</span>
+            <input type="textarea" class="form-control" aria-label="Review" [value]="item.Comment" disabled
+              aria-describedby="basic-addon1" />
+              <p class="mx-auto my-2 fw-bold">Sei sicuro di voler eliminare questa Recensione?</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Chiudi</button>
+          <button type="button" class="btn btn-primary" data-mdb-dismiss="modal" (click)="DeleteReview(item.IdReview)">Elimina</button>
+        </div>
+      </div>
+    </div>
+  </div>
+              </div>
+              </div>
+            </div>
           </div>
         </div>
         <p *ngIf="!attendance || !user">Partecipa per lasciare una recensione</p>

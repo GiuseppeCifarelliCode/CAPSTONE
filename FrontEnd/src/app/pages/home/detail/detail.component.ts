@@ -6,6 +6,7 @@ import { Icategory } from 'src/app/models/icategory';
 import { Iuser } from 'src/app/models/iuser';
 import { Iattendance } from 'src/app/models/iattendance';
 import { Ireview } from 'src/app/models/ireview';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-detail',
@@ -20,6 +21,8 @@ export class DetailComponent {
   user!:Iuser
   attendance!:Iattendance
   reviews!:Ireview[]
+  editForm!:FormGroup
+  editReview!:Ireview
   userReviews:Iuser[] = []
   reviewMessage:string = 'Non sono presenti recensioni'
   reviewInput:string = ''
@@ -30,7 +33,7 @@ export class DetailComponent {
     IdEvent: 0,
     IdUser: 0 }
 
-  constructor(private route:ActivatedRoute, private homeSvc:HomeService){}
+  constructor(private route:ActivatedRoute, private homeSvc:HomeService, private fb:FormBuilder){}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -52,6 +55,7 @@ export class DetailComponent {
       }
     })
   }
+  this.createEditForm()
   }
 
 
@@ -118,5 +122,28 @@ export class DetailComponent {
   buyTicket(){
     this.attendance.Ticket = true
     this.homeSvc.BuyTicket(this.attendance).subscribe()
+  }
+
+  createEditForm(){
+    this.editForm = this.fb.group({
+      Comment: this.fb.control(null, [Validators.required])
+    })
+  }
+
+  takeReview(review:Ireview){
+    this.editReview = review
+    console.log(this.editReview);
+
+  }
+
+  EditReview(){
+    this.editReview.Comment = this.editForm.value.Comment
+    this.homeSvc.EditReview(this.editReview).subscribe()
+  }
+
+  DeleteReview(idReview:number){
+    this.homeSvc.DeleteReview(idReview).subscribe(response =>{
+      this.getReviews()
+    })
   }
 }

@@ -1,0 +1,108 @@
+<header>
+<div id="intro" class="bg-image vh-100 shadow-1-strong">
+  <video style="min-width: 100%; min-height: 100%;" playsinline autoplay muted loop>
+    <source class="h-100"
+      src="https://mdbootstrap.com/img/video/animation-intro-min.mp4"
+      type="video/mp4"
+    />
+  </video>
+  <div class="mask" style="
+        background: linear-gradient(
+          45deg,
+          rgba(29, 236, 197, 0.7),
+          rgba(91, 14, 214, 0.7) 100%
+        );
+      ">
+    <div class="container d-flex align-items-center justify-content-center text-center h-100">
+      <div class="text-white">
+        <img src="../../../assets/logo.png" class="w-50 rounded-circle">
+        <h1 class="mb-3">EvenMT - Lista di Eventi aggiornata h24</h1>
+        <h5 class="mb-4">Rimani aggiornato, partecipa agli eventi, scrivi recensioni. <strong>Partecipare</strong> è la chiave della Cultura.</h5>
+        <a class="btn btn-outline-light btn-lg m-2" routerLink="/home">Visualizza Lista</a>
+        <a *ngIf="!user" class="btn btn-outline-light btn-lg m-2" routerLink="/auth/login" role="button">Login</a>
+        <a class="btn btn-outline-light btn-lg m-2" routerLink="/about" role="button">About Us</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Background image -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main class="mt-5">
+<div class="container">
+  <!--Section: Content-->
+  <section>
+    <div class="row">
+      <div class="col-md-6 gx-5 mb-4">
+        <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+          <img src="../../../assets/herobg.jpg" class="img-fluid" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-6 gx-5 mb-4">
+        <h4><strong>Semplice ed intuitiva</strong></h4>
+        <p class="text-muted">
+          L'app <span class="fw-bold">EventMT</span> è progettata per offrirti un'esperienza intuitiva e senza complicazioni.
+           Con un'interfaccia utente pulita e semplice, mettiamo il focus sulla facilità d'uso per garantire che
+            tu possa sfruttare appieno tutte le potenzialità dell'app senza alcuna difficoltà.
+        </p>
+        <p><strong>Pubblicizza i tuoi eventi</strong></p>
+        <p class="text-muted">
+          Sei un amministratore? Abbiamo reso semplice pubblicare e promuovere i tuoi eventi con la nostra funzionalità
+          dedicata agli admin!
+          Pubblicare eventi non è mai stato così facile.
+          Entra nell'azione oggi stesso e assicurati che il tuo prossimo evento riceva l'attenzione che merita!
+        </p>
+      </div>
+    </div>
+  </section>
+  <!--Section: Content-->
+
+  <hr class="my-5" />
+
+  <!--Section: Content-->
+  <section class="text-center">
+    <h4 class="mb-5"><strong>Seleziona il pacchetto che preferisci:</strong></h4>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-12 mb-4">
+        <div class="card text-center">
+          <div class="card-header fw-bold" style="background-color: rgba(0, 0, 0, 0.05);">€3.90</div>
+          <div class="card-body">
+            <h5 class="card-title">Evento Singolo</h5>
+            <p class="card-text">Se hai bisogno di inserire un singolo evento.</p>
+          </div>
+          <div class="card-footer text-muted"><a href="#" class="btn btn-primary">Acquista</a></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card text-center">
+          <div class="card-header fw-bold" style="background-color: rgba(0, 0, 0, 0.05);">€9.90</div>
+          <div class="card-body">
+            <h5 class="card-title">Abbonamento mensile</h5>
+            <p class="card-text">Inserisci tutti gli eventi che desideri per un mese.</p>
+          </div>
+          <div class="card-footer text-muted"><a href="#" class="btn btn-primary">Acquista</a></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card text-center">
+          <div class="card-header fw-bold" style="background-color: rgba(0, 0, 0, 0.05);">€99.90</div>
+          <div class="card-body">
+            <h5 class="card-title">Abbonamento annuale</h5>
+            <p class="card-text">Inserisci tutti gli eventi che desideri per un anno.</p>
+          </div>
+          <div class="card-footer text-muted"><a href="#" class="btn btn-primary">Acquista</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>

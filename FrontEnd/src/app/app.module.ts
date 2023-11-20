@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
 import { TicketListComponent } from './pages/ticket-list/ticket-list.component';
 import { AboutComponent } from './pages/about/about.component';
+import { StartComponent } from './pages/start/start.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AboutComponent } from './pages/about/about.component';
     NavbarComponent,
     FooterComponent,
     TicketListComponent,
-    AboutComponent
+    AboutComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,

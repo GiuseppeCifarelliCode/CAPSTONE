@@ -95,4 +95,12 @@ export class HomeService {
   BuyTicket(attendance:Iattendance){
     return this.http.put<Iattendance>(this.attendanceUrl+'/'+attendance.IdAttendance,attendance)
   }
+
+  EditReview(review:Ireview){
+    return this.http.put<Ireview>(this.reviewUrl+'/'+review.IdReview,review)
+  }
+
+  DeleteReview(idReview:number){
+    return this.http.delete(this.reviewUrl+'/'+idReview)
+  }
 }

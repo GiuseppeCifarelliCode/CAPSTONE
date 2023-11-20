@@ -1,13 +1,13 @@
 <div class="row container-fluid">
   <div class="col-md-8 mt-2">
     <div class="d-flex justify-content-evenly align-items-center">
-      <div>
+      <div class="d-flex align-items-center">
         <i class="fas fa-search mx-2 rounded-circle p-1 text-bg-primary"></i>
-      <input type="date" (change)="searchByDate($event)">
+      <input type="date" class="form-control" (change)="searchByDate($event)">
     </div>
-    <div>
+    <div class="d-flex align-items-center">
       <i class="fas fa-filter mx-2 rounded-circle p-1 text-bg-primary"></i>
-      <select (change)="searchByCategory($event)">
+      <select class="form-control" (change)="searchByCategory($event)">
         <option value="" disabled>Select a Category</option>
         <option *ngFor="let category of category" [value]='category.IdCategory'>{{ category.Name }}</option>
       </select>
@@ -16,11 +16,11 @@
     <h3 class="text-center">{{title}}</h3>
     <div *ngFor="let item of event" class="m-2">
       <div class="card d-flex flex-column flex-md-row">
-        <img [src]="item.Cover" class="card-img-top w-25" [alt]="item.Name" />
+        <img [src]="item.Cover" class="card-img-top w-25" [alt]="item.Name" [routerLink]="'event/'+item.IdEvent" />
         <div class="card-body">
           <h5 class="card-title">{{item.Name}}</h5>
           <div *ngFor="let cat of category">
-            <p *ngIf="item.IdCategory == cat.IdCategory" class="card-text">{{cat.Name}}</p>
+            <p *ngIf="item.IdCategory == cat.IdCategory" class="card-text d-inline-block p-1 rounded-5" [class]="cat.Name">{{cat.Name}}</p>
           </div>
           <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{item.Place}}</p>
           <p class="card-text"><i class="far fa-calendar-alt"></i> {{item.StartDate | date: 'dd/MM/yyyy HH:mm'}}</p>
