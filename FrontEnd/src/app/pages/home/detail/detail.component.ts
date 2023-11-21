@@ -23,6 +23,7 @@ export class DetailComponent {
   reviews!:Ireview[]
   editForm!:FormGroup
   editReview!:Ireview
+  deleted!:Ireview
   userReviews:Iuser[] = []
   reviewMessage:string = 'Non sono presenti recensioni'
   reviewInput:string = ''
@@ -80,7 +81,6 @@ export class DetailComponent {
   }
 
   addAttendance(idEvent:number){
-    console.log(idEvent);
     this.attendance = {
       IdAttendance: 0,
       Partecipated: true,
@@ -90,7 +90,13 @@ export class DetailComponent {
       IdUser: this.user.IdUser,
       IdEvent: idEvent,
   };
-    this.homeSvc.AddAttendance(this.attendance)
+    this.homeSvc.AddAttendance(this.attendance).subscribe(response =>{
+      this.homeSvc.GetAttendanceByUser(this.user.IdUser).subscribe(data => {
+        for(let i = 0; i<data.length; i++){
+          if(data[i].IdEvent == this.eventId) this.attendance = data[i]
+        }
+      })
+    })
   }
 
   getReviews(){
@@ -114,8 +120,9 @@ export class DetailComponent {
     this.review.IdAttendance = this.attendance.IdAttendance
     this.review.IdEvent = this.eventId
     this.review.IdUser = this.user.IdUser
-    this.reviews.push(this.review)
-    this.homeSvc.AddReview(this.review)
+    this.homeSvc.AddReview(this.review).subscribe(response =>{
+      this.getReviews()
+    })
     this.reviewInput = ""
   }
 
@@ -132,8 +139,10 @@ export class DetailComponent {
 
   takeReview(review:Ireview){
     this.editReview = review
-    console.log(this.editReview);
+  }
 
+  deletedRev(review:Ireview){
+    this.deleted = review
   }
 
   EditReview(){

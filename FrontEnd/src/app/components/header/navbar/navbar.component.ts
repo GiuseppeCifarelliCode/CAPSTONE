@@ -22,13 +22,13 @@ export class NavbarComponent {
 
     this.authSvc.user$.subscribe(user => {
       this.user = user;
-      if(this.user && this.user.Avatar != 'user.png'){
+      if(this.user && this.user.Avatar != "user.png"){
         this.homeSvc.GetImage(this.user?.Avatar).subscribe((imageURL:any) => {
           this.user!.Avatar = 'data:image/jpeg;base64,' + imageURL.base64Image;
-        })
-      }
-      console.log(user);
+          console.log(this.user?.Avatar);
 
+        })
+      } else user!.Avatar = "../../../../assets/user.png"
     })
   }
 

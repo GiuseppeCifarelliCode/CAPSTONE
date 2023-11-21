@@ -43,7 +43,7 @@ export class SignUpComponent {
           Surname:this.signUpForm.value.Surname,
           BirthPlace:this.signUpForm.value.BirthPlace,
           BirthDate:this.signUpForm.value.BirthDate,
-          Avatar:this.signUpForm.value.Avatar,
+          Avatar:this.avatarData,
           Username:this.signUpForm.value.Username,
           Email:this.signUpForm.value.Email,
           Phone:this.signUpForm.value.Phone,

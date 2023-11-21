@@ -28,7 +28,11 @@ export class AddCategoryComponent {
   Add(){
     if(this.addCategoryForm.value.Name != ""){
       this.category.Name = this.addCategoryForm.value.Name
-      this.adminSvc.AddCategory(this.category)
+      this.adminSvc.AddCategory(this.category).subscribe(response =>{
+        this.adminSvc.GetCategories().subscribe(data =>{
+          this.categories= data
+        })
+      })
       this.addCategoryForm.reset()
       this.errorMessage = ""
     } else this.errorMessage = "Inserisci una categoria!"

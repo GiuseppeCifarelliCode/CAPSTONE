@@ -5,6 +5,6 @@
     "\\Controllers",
     "\\Models"
   ],
-  "SelectedNode": "\\Global.asax.cs",
+  "SelectedNode": "\\Controllers\\ReviewController.cs",
   "PreviewInSolutionExplorer": false
 }

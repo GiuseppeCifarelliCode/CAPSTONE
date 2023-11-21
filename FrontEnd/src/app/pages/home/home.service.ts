@@ -54,17 +54,7 @@ export class HomeService {
   }
 
   AddAttendance(data:Iattendance){
-    console.log(data);
     return this.http.post<Iattendance>(this.attendanceUrl,data)
-    .subscribe(
-      (response: any) => {
-        console.log(response);
-
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Errore:', error);
-      }
-    );
   }
 
   GetAttendanceByUser(IdUser:number){
@@ -81,15 +71,6 @@ export class HomeService {
 
   AddReview(review:Ireview){
     return this.http.post<Ireview>(this.reviewUrl,review)
-    .subscribe(
-      (response: any) => {
-        console.log(response);
-
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Errore:', error);
-      }
-    );
   }
 
   BuyTicket(attendance:Iattendance){

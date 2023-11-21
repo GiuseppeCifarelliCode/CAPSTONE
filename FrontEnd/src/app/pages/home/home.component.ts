@@ -78,8 +78,12 @@ export class HomeComponent {
       IdUser: this.user.IdUser,
       IdEvent: idEvent,
   };
-    this.homeSvc.AddAttendance(this.attendance)
-    this.router.navigateByUrl("home/event/"+idEvent)
+    this.homeSvc.AddAttendance(this.attendance).subscribe(response =>{
+      this.homeSvc.GetAttendanceByUser(this.user.IdUser).subscribe(data =>{
+        this.trueAttendance = data
+      })
+    })
+    // this.router.navigateByUrl("home/event/"+idEvent)
   }
 
   isAttending(eventId: number): boolean {

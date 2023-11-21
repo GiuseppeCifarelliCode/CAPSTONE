@@ -16,15 +16,6 @@ export class AdminService {
   AddCategory(data:Icategory){
     console.log(data);
     return this.http.post<Icategory>(this.categoryUrl,data)
-    .subscribe(
-      (response: any) => {
-        console.log(response);
-
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Errore:', error);
-      }
-    );
   }
 
   GetCategories(){
