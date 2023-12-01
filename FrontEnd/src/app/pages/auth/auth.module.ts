@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -20,6 +22,11 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
     AuthRoutingModule,
     ReactiveFormsModule,
     MdbFormsModule
-  ]
+  ],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:JwtInterceptor,
+    multi:  true
+  }],
 })
 export class AuthModule { }

@@ -11,13 +11,21 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.IdentityModel.Tokens;
 using EvenMT.Models;
+using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Ajax.Utilities;
+using System.Security.Cryptography;
 
 namespace EvenMT.Controllers
 {
     public class UserController : ApiController
     {
         private ModelDBContext db = new ModelDBContext();
+
+        private const string SecretKey = "aRE;[1ku2ow3!.,erl]0aqsbd";
 
         // GET: api/User
         public IQueryable<User> GetUser()
@@ -173,23 +181,52 @@ namespace EvenMT.Controllers
                 return BadRequest("Credenziali non valide");
             }
 
-            var userDto = new UserDTO
-            {
-                IdUser = u.IdUser,
-                Name = u.Name,
-                Surname = u.Surname,
-                BirthPlace = u.BirthPlace,
-                BirthDate = u.BirthDate,
-                Avatar = u.Avatar,
-                Username = u.Username,
-                Email = u.Email,
-                Phone = u.Phone,
-                Privacy = u.Privacy,
-                Role = u.Role
-            };
+            // Se l'utente esiste genera il token
+            var token = GenerateToken(u.IdUser);
+
 
             // Puoi restituire l'utente o un token di accesso JWT qui
-            return Ok(userDto);
+            return Ok(token);
+        }
+
+        private string GenerateToken(long userId)
+        {
+           try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var now = DateTime.UtcNow;
+
+                // Configura il claim dell'identità dell'utente
+                var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, userId.ToString())
+            // Aggiungi altri claims se necessario
+        };
+                using (var rng = new RNGCryptoServiceProvider())
+                {
+                    var keyBytes = new byte[32];
+                    rng.GetBytes(keyBytes);
+                    var signingKey = new SymmetricSecurityKey(keyBytes);
+
+
+                    // Configura le opzioni del token
+                    var tokenDescriptor = new SecurityTokenDescriptor
+                    {
+                        Subject = new ClaimsIdentity(claims),
+                        Expires = now.Add(TimeSpan.FromHours(1)), // Scadenza del token
+                        SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
+                    };
+                    // Crea e firma il token JWT
+                    var token = tokenHandler.CreateToken(tokenDescriptor);
+                    // Serializza il token in una stringa
+                    return tokenHandler.WriteToken(token);
+                }
+
+            } catch (Exception ex)
+            {
+                return $"Failed to login {ex.Message}";
+            }
+           
         }
     }
 }

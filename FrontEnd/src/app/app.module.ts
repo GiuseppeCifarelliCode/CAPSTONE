@@ -1,8 +1,9 @@
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TicketListComponent } from './pages/ticket-list/ticket-list.component';
 import { AboutComponent } from './pages/about/about.component';
 import { StartComponent } from './pages/start/start.component';
+import { JwtInterceptor } from './jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,21 @@ import { StartComponent } from './pages/start/start.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MdbCollapseModule,
-    MdbDropdownModule
+    MdbDropdownModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          // Implementa la logica per recuperare il token dal localStorage o da un'altra fonte
+          return localStorage.getItem('token');
+        },
+      },
+    }),
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:JwtInterceptor,
+    multi:  true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

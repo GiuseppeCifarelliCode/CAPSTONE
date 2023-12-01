@@ -90,27 +90,27 @@
                 <p>{{item.Comment}}</p>
                 <div>
                   <!-- Button trigger edit modal -->
-                  <button *ngIf="getUserName(item.IdUser) == user.Username" class="btn btn-outline-dark mx-1"
+                  <button *ngIf="user && getUserName(item.IdUser) == user.Username" class="btn btn-outline-dark mx-1"
                     data-mdb-toggle="modal" data-mdb-target="#EditBackdrop" (click)="takeReview(item)">
                     <i class="fas fa-pen"></i>
                   </button>
 
     <!-- Edit Modal -->
     <div class="modal fade" id="EditBackdrop"
-      data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+      data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="editLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modifica Recensione</h5>
+            <h5 class="modal-title" id="editLabel">Modifica Recensione</h5>
             <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form [formGroup]="editForm">
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Recensione</span>
-                <input *ngIf="editReview" type="text" class="form-control" aria-label="Comment" [value]="editReview.Comment"
-                  aria-describedby="basic-addon1" formControlName="Comment" />
+                <span class="input-group-text" id="editAddon">Recensione</span>
+                <input *ngIf="editReview" type="textarea" class="form-control" aria-label="Review" [value]="editReview.Comment"
+                  aria-describedby="editAddon" formControlName="Comment" />
               </div>
             </form>
           </div>
@@ -122,26 +122,26 @@
       </div>
     </div>
                   <!-- Button trigger delete modal -->
-                  <button *ngIf="getUserName(item.IdUser) == user.Username" class="btn btn-outline-dark mx-1"
+                  <button *ngIf="user && getUserName(item.IdUser) == user.Username" class="btn btn-outline-dark mx-1"
                     data-mdb-toggle="modal" data-mdb-target="#DeleteBackdrop" (click)="deletedRev(item)">
                     <i class="fas fa-times"></i>
                   </button>
 
                    <!-- Delete Modal -->
     <div class="modal fade" id="DeleteBackdrop"
-    data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+    data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1" aria-labelledby="deleteLabel"
     aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Elimina Recensione</h5>
+          <h5 class="modal-title" id="deleteLabel">Elimina Recensione</h5>
           <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Recensione</span>
+            <span class="input-group-text" id="deleteAddon">Recensione</span>
             <input *ngIf="deleted" type="textarea" class="form-control" aria-label="Review" [value]="deleted.Comment" disabled
-              aria-describedby="basic-addon1" />
+              aria-describedby="deleteAddon" />
               <p class="mx-auto my-2 fw-bold">Sei sicuro di voler eliminare questa Recensione?</p>
           </div>
         </div>

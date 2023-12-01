@@ -133,12 +133,13 @@ export class DetailComponent {
 
   createEditForm(){
     this.editForm = this.fb.group({
-      Comment: this.fb.control(null, [Validators.required])
+      Comment: this.fb.control([Validators.required])
     })
   }
 
   takeReview(review:Ireview){
     this.editReview = review
+    this.editForm.setValue({Comment:this.editReview.Comment})
   }
 
   deletedRev(review:Ireview){
