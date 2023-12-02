@@ -1,3 +1,4 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Ievent } from 'src/app/models/ievent';
@@ -16,21 +17,38 @@ export class HomeComponent {
   event!:Ievent[]
   nextEvents!:Ievent[]
   category!:Icategory[]
+  decodedToken:any
   user!:Iuser
   attendance!:Iattendance
   trueAttendance!:Iattendance[]
   title:string = 'Eventi Oggi'
 
-  constructor(private homeSvc:HomeService, private router:Router){}
+  constructor(private homeSvc:HomeService, private router:Router, public JwtHelper:JwtHelperService){}
 
   ngOnInit(){
-    if(localStorage.getItem('User')){
-      const userDataJSON = localStorage.getItem('User')
-      if(userDataJSON) {
-        this.user = JSON.parse(userDataJSON) as Iuser
-        this.homeSvc.GetAttendanceByUser(this.user.IdUser).subscribe(response =>{
-          this.trueAttendance = response
-        })
+    if(localStorage.getItem('token')){
+      const token = localStorage.getItem('token')
+      if(token) {
+        this.decodedToken = this.JwtHelper.decodeToken(token)
+        if (this.decodedToken) {
+          // Decodifica il token per ottenere le informazioni sull'utente
+          this.homeSvc
+            .GetUserById(this.decodedToken.unique_name)
+            .subscribe((user) => {
+              this.user = user;
+              if (this.user && this.user.Avatar != 'user.png') {
+                this.homeSvc
+                  .GetImage(this.user?.Avatar)
+                  .subscribe((imageURL: any) => {
+                    this.user!.Avatar =
+                      'data:image/jpeg;base64,' + imageURL.base64Image;
+                  });
+              } else this.user!.Avatar = '../../../../assets/user.png';
+              this.homeSvc.GetAttendanceByUser(this.user.IdUser).subscribe(response =>{
+                this.trueAttendance = response
+              })
+            });
+        }
       }
     }
     this.homeSvc.GetEvents().subscribe(response => {

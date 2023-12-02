@@ -7,6 +7,7 @@ import { Iuser } from 'src/app/models/iuser';
 import { Iattendance } from 'src/app/models/iattendance';
 import { Ireview } from 'src/app/models/ireview';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-detail',
@@ -18,6 +19,7 @@ export class DetailComponent {
   eventId!:number
   event!:Ievent
   category!:Icategory[]
+  decodedToken:any
   user!:Iuser
   attendance!:Iattendance
   reviews!:Ireview[]
@@ -34,28 +36,44 @@ export class DetailComponent {
     IdEvent: 0,
     IdUser: 0 }
 
-  constructor(private route:ActivatedRoute, private homeSvc:HomeService, private fb:FormBuilder){}
+  constructor(private route:ActivatedRoute, private homeSvc:HomeService, private fb:FormBuilder, private JwtHelper:JwtHelperService){}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.eventId = +params['id']; // Converte l'ID dalla stringa a un numero
       this.getEventById();
     });
-    if(localStorage.getItem('User')){
-      const userDataJSON = localStorage.getItem('User')
-      if(userDataJSON) this.user = JSON.parse(userDataJSON) as Iuser
+    if(localStorage.getItem('token')){
+      const token = localStorage.getItem('token')
+      if(token) {
+        this.decodedToken = this.JwtHelper.decodeToken(token)
+        if (this.decodedToken) {
+          // Decodifica il token per ottenere le informazioni sull'utente
+          this.homeSvc
+            .GetUserById(this.decodedToken.unique_name)
+            .subscribe((user) => {
+              this.user = user;
+              if (this.user && this.user.Avatar != 'user.png') {
+                this.homeSvc
+                  .GetImage(this.user?.Avatar)
+                  .subscribe((imageURL: any) => {
+                    this.user!.Avatar =
+                      'data:image/jpeg;base64,' + imageURL.base64Image;
+                  });
+              } else this.user!.Avatar = '../../../../assets/user.png';
+              this.homeSvc.GetAttendanceByUser(this.user.IdUser).subscribe(data => {
+                for(let i = 0; i<data.length; i++){
+                  if(data[i].IdEvent == this.eventId) this.attendance = data[i]
+                }
+              })
+            });
+        }
+      }
     }
     this.homeSvc.GetCategory().subscribe(response => {
       this.category = response
       console.log(response);
     })
-    if(this.user){
-      this.homeSvc.GetAttendanceByUser(this.user.IdUser).subscribe(data => {
-      for(let i = 0; i<data.length; i++){
-        if(data[i].IdEvent == this.eventId) this.attendance = data[i]
-      }
-    })
-  }
   this.createEditForm()
   }
 

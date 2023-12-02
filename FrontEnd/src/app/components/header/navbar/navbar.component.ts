@@ -19,7 +19,6 @@ export class NavbarComponent {
   constructor(
     public authSvc: AuthService,
     private homeSvc: HomeService,
-    private jwtHelper: JwtHelperService
   ) {
     // Verifico se un utente è loggato
     this.authSvc.isLoggedIn$.subscribe((log) => {
