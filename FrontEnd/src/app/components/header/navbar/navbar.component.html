@@ -38,16 +38,16 @@
           <a class="nav-link" href="home">Home</a>
         </li>
         <li *ngIf="user" class="nav-item">
-          <a class="nav-link" href="ticketList">Miei biglietti</a>
+          <a class="nav-link" href="ticketList">{{'navbarMyTickets' | translate}}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about">About Us</a>
         </li>
         <li *ngIf="user?.Role=='SuperAdmin'" class="nav-item">
-          <a class="nav-link" href="admin/addEvent">Aggiungi Evento</a>
+          <a class="nav-link" href="admin/addEvent">{{'navbarAddEvents' | translate}}</a>
         </li>
         <li *ngIf="user?.Role=='SuperAdmin'" class="nav-item">
-          <a class="nav-link" href="admin/addCategory">Aggiungi Categoria</a>
+          <a class="nav-link" href="admin/addCategory">{{'navbarAddCategory' | translate}}</a>
         </li>
       </ul>
       <!-- Right links -->
@@ -63,6 +63,8 @@
       <div class="d-flex align-items-center">
         <ul *ngIf="user" class="navbar-nav mx-2 align-items-center">
           <!-- Avatar -->
+          <li><img *ngIf="currentLang === 'en'" src="../../../../assets/italyFlag.png" height="30" alt="Italian Flag" (click)="toggleLanguage()"></li>
+          <li><img *ngIf="currentLang === 'it'" src="../../../../assets/usaFlag.png" height="30" alt="English Flag" (click)="toggleLanguage()"></li>
           <li class="fw-bold">{{user.Username}}</li>
           <li mdbDropdown class="nav-item dropdown">
             <a

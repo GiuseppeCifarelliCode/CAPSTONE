@@ -21,12 +21,14 @@
     <tr>
       <th class="text-center">#Id</th>
       <th class="text-center">Categoria</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of categories">
       <td class="text-center">{{item.IdCategory}}</td>
       <td class="text-center">{{item.Name}}</td>
+      <td><i class="far fa-trash-alt" (click)="Delete(item.IdCategory)"></i></td>
     </tr>
   </tbody>
 </table>

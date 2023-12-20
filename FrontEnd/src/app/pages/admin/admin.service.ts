@@ -14,7 +14,6 @@ export class AdminService {
   constructor(private http:HttpClient, private router:Router) { }
 
   AddCategory(data:Icategory){
-    console.log(data);
     return this.http.post<Icategory>(this.categoryUrl,data)
   }
 
@@ -23,7 +22,6 @@ export class AdminService {
   }
 
   AddEvent(data:Ievent){
-    console.log(data);
     return this.http.post<Ievent>(this.eventUrl,data)
     .subscribe(
       (response: any) => {
@@ -36,4 +34,7 @@ export class AdminService {
     );
   }
 
+  DeleteCategory(id:number){
+    return this.http.delete(this.categoryUrl+"/"+id)
+  }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-about',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AboutComponent {
 
+  constructor(private translate:TranslateService){
+    translate.setDefaultLang('it');
+    translate.use('it')
+  }
 }

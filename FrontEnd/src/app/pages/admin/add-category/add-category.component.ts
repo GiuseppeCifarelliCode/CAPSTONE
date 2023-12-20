@@ -37,4 +37,10 @@ export class AddCategoryComponent {
       this.errorMessage = ""
     } else this.errorMessage = "Inserisci una categoria!"
   }
+
+  Delete(id:number){
+    this.adminSvc.DeleteCategory(id).subscribe(response =>{
+      this.ngOnInit()
+    })
+  }
 }
