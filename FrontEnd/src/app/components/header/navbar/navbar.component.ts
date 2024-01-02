@@ -68,5 +68,6 @@ export class NavbarComponent {
     this.currentLang = this.currentLang === 'en'?'it':'en'
     this.translate.use(this.currentLang)
     this.languageSvc.languageSubject.next(this.currentLang)
+    localStorage.setItem('selectedLanguage', this.currentLang);
   }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from 'src/app/language.service';
 
 @Component({
   selector: 'app-about',
@@ -8,8 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AboutComponent {
 
-  constructor(private translate:TranslateService){
-    translate.setDefaultLang('it');
-    translate.use('it')
+  currentLanguage !: string
+  constructor(private translate:TranslateService, private languageSvc:LanguageService){}
+  ngOnInit(){
+    this.languageSvc.currentLanguage$.subscribe(lang => {
+      this.currentLanguage = lang
+      this.translate.use(this.currentLanguage)
+    })
   }
 }

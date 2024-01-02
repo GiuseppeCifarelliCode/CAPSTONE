@@ -63,6 +63,7 @@
       <div class="d-flex align-items-center">
         <ul *ngIf="user" class="navbar-nav mx-2 align-items-center">
           <!-- Avatar -->
+          <!-- Verificare perchè non mette le bandiere senza il Login -->
           <li><img *ngIf="currentLang === 'en'" src="../../../../assets/italyFlag.png" height="30" alt="Italian Flag" (click)="toggleLanguage()"></li>
           <li><img *ngIf="currentLang === 'it'" src="../../../../assets/usaFlag.png" height="30" alt="English Flag" (click)="toggleLanguage()"></li>
           <li class="fw-bold">{{user.Username}}</li>

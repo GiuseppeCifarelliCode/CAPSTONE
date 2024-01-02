@@ -5,5 +5,12 @@
   "startTitle":"EvenMT - Up-to-date Event List 24/7",
   "startSubtitle":"Stay updated, participate in events, write reviews. <strong>Participating</strong> is the key to Culture.",
   "buttonViewList":"Go to List",
-  "aboutWho":"I am a <span class=\"fw-bold\">Full-Stack Developer</span> passionate about programming. My passion goes beyond my daily work. I am always looking for new challenges, staying updated on the latest trends and industry best practices."
+  "startSectionTitle":"Simple and Intuitive",
+  "startSectionPar":"The <span class=\"fw-bold\">EvenMT</span> app is designed to provide you with an intuitive and hassle-free experience. With a clean and simple user interface, we focus on ease of use to ensure that you can fully leverage all the capabilities of the app without any difficulty.",
+  "startAdminTitle":"Advertise your Events",
+  "startAdminPar":"Are you an administrator? We've made it easy to publish and promote your events with our dedicated admin feature! Posting events has never been this easy. Get in on the action today and make sure your next event gets the attention it deserves!",
+  "aboutFirstTitle":"Who Am I?",
+  "aboutWho":"I am a <span class=\"fw-bold\">Full-Stack Developer</span> passionate about programming. My passion goes beyond my daily work. I am always looking for new challenges, staying updated on the latest trends and industry best practices.",
+  "aboutSecondTitle":"How was this Project born?",
+  "aboutProject":"<span class=\"fw-bold\">EvenMT</span> was born from the need to have a collection of events in Matera easily accessible to everyone through an intuitive interface. This project aims to increase citizens' participation in the social and cultural life of the city, without neglecting entertainment and recreation for the younger audience."
 }

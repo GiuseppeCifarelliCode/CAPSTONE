@@ -5,5 +5,12 @@
   "startTitle":"EvenMT - Lista di Eventi aggiornata h24",
   "startSubtitle":"Rimani aggiornato, partecipa agli eventi, scrivi recensioni. <strong>Partecipare</strong> è la chiave della Cultura.",
   "buttonViewList":"Visualizza Lista",
-  "aboutWho":"Sono un <span class=\"fw-bold\">Full-Stack Developer</span> appassionato di programmazione. La mia passione non si limita al mio lavoro quotidiano. Sono sempre alla ricerca di nuove sfide aggiornandomi sulle nuove tendenze e sulle best practice del settore."
+  "startSectionTitle":"Semplice ed intuitiva",
+  "startSectionPar":"L'app <span class=\"fw-bold\">EvenMT</span> è progettata per offrirti un'esperienza intuitiva e senza complicazioni. Con un'interfaccia utente pulita e semplice, mettiamo il focus sulla facilità d'uso per garantire che tu possa sfruttare appieno tutte le potenzialità dell'app senza alcuna difficoltà.",
+  "startAdminTitle":"Pubblicizza i tuoi eventi",
+  "startAdminPar":"Sei un amministratore? Abbiamo reso semplice pubblicare e promuovere i tuoi eventi con la nostra funzionalità dedicata agli admin! Pubblicare eventi non è mai stato così facile. Entra nell'azione oggi stesso e assicurati che il tuo prossimo evento riceva l'attenzione che merita!",
+  "aboutFirstTitle":"Chi sono?",
+  "aboutWho":"Sono un <span class=\"fw-bold\">Full-Stack Developer</span> appassionato di programmazione. La mia passione non si limita al mio lavoro quotidiano. Sono sempre alla ricerca di nuove sfide aggiornandomi sulle nuove tendenze e sulle best practice del settore.",
+  "aboutSecondTitle":"Com'è nato questo Progetto?",
+  "aboutProject":"<span class=\"fw-bold\">EvenMT</span> è nato dalla necessità di avere una raccolta di eventi su Matera facilmente accessibile da tutti grazie ad una interfaccia intuitiva. Questo progetto ha come obiettivo l'incremento della partecipazione da parte dei cittadini alla vita sociale e culturale della città, senza tralasciare lo svago e l'intrattenimento per i più giovani."
 }

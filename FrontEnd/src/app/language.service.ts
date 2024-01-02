@@ -12,6 +12,12 @@ export class LanguageService {
 
   constructor(private translate:TranslateService) {
     translate.setDefaultLang('it');
-    this.languageSubject.next('it')
+    const storedLanguage = localStorage.getItem('selectedLanguage');
+    if (storedLanguage) {
+      this.languageSubject.next(storedLanguage);
+      translate.use(storedLanguage);
+    } else {
+      this.languageSubject.next('it');
+    }
   }
 }
