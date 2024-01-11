@@ -16,11 +16,11 @@
     <div class="container d-flex align-items-center justify-content-center text-center h-100">
       <div class="text-white">
         <img src="../../../assets/logo.png" class="rounded-circle">
-        <h1 class="mb-3">{{'startTitle' | translate}}</h1>
-        <h5 class="mb-4" [innerHTML]="'startSubtitle' | translate"></h5>
-        <a class="btn btn-outline-light btn-lg m-2" routerLink="/home">{{'buttonViewList' | translate}}</a>
-        <a *ngIf="!user" class="btn btn-outline-light btn-lg m-2" routerLink="/auth/login" role="button">Login</a>
-        <a class="btn btn-outline-light btn-lg m-2" routerLink="/about" role="button">About Us</a>
+        <h1 class="mb-3" [ngClass]="{'title_light':currentTheme == 'light', 'title_dark':currentTheme == 'dark'}">{{'startTitle' | translate}}</h1>
+        <h5 class="mb-4" [ngClass]="{'title_light':currentTheme == 'light', 'title_dark':currentTheme == 'dark'}" [innerHTML]="'startSubtitle' | translate"></h5>
+        <a class="btn btn-lg m-2" [ngClass]="{'button_light':currentTheme == 'light', 'button_dark':currentTheme == 'dark'}"  routerLink="/home">{{'buttonViewList' | translate}}</a>
+        <a *ngIf="!user" class="btn btn-lg m-2" [ngClass]="{'button_light':currentTheme == 'light', 'button_dark':currentTheme == 'dark'}" routerLink="/auth/login" role="button">Login</a>
+        <a class="btn btn-lg m-2" [ngClass]="{'button_light':currentTheme == 'light', 'button_dark':currentTheme == 'dark'}" routerLink="/about" role="button">About Us</a>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
 <!--Main Navigation-->
 
 <!--Main layout-->
-<main class="mt-5">
+<main class="pt-5" [ngClass]="{'main_light':currentTheme == 'light', 'main_dark':currentTheme == 'dark'}" >
 <div class="container">
   <!--Section: Content-->
   <section>
@@ -46,10 +46,10 @@
 
       <div class="col-md-6 gx-5 mb-4">
         <h4><strong>{{"startSectionTitle" | translate}}</strong></h4>
-        <p class="text-muted" [innerHTML]="'startSectionPar' | translate">
+        <p [innerHTML]="'startSectionPar' | translate">
         </p>
         <p><strong>{{"startAdminTitle" | translate}}</strong></p>
-        <p class="text-muted">
+        <p>
           {{"startAdminPar"|translate}}
         </p>
       </div>
@@ -66,34 +66,34 @@
     <div class="row">
       <div class="col-lg-4 col-md-12 mb-4">
         <div class="card text-center">
-          <div class="card-header fw-bold" style="background-color: rgba(0, 0, 0, 0.05);">€3.90</div>
-          <div class="card-body">
+          <div class="card-header fw-bold" [ngClass]="{'card_header_light':currentTheme == 'light', 'card_header_dark':currentTheme == 'dark'}">€3.90</div>
+          <div class="card-body" [ngClass]="{'card_body_light':currentTheme == 'light', 'card_body_dark':currentTheme == 'dark'}">
             <h5 class="card-title">Evento Singolo</h5>
             <p class="card-text">Se hai bisogno di inserire un singolo evento.</p>
           </div>
-          <div class="card-footer text-muted"><a href="#" class="btn btn-primary">Acquista</a></div>
+          <div class="card-footer" [ngClass]="{'card_footer_light':currentTheme == 'light', 'card_footer_dark':currentTheme == 'dark'}"><a href="#" class="btn" [ngClass]="{'card_button_light':currentTheme == 'light', 'card_button_dark':currentTheme == 'dark'}">Acquista</a></div>
         </div>
       </div>
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card text-center">
-          <div class="card-header fw-bold" style="background-color: rgba(0, 0, 0, 0.05);">€9.90</div>
-          <div class="card-body">
+          <div class="card-header fw-bold" [ngClass]="{'card_header_light':currentTheme == 'light', 'card_header_dark':currentTheme == 'dark'}">€9.90</div>
+          <div class="card-body" [ngClass]="{'card_body_light':currentTheme == 'light', 'card_body_dark':currentTheme == 'dark'}">
             <h5 class="card-title">Abbonamento mensile</h5>
             <p class="card-text">Inserisci tutti gli eventi che desideri per un mese.</p>
           </div>
-          <div class="card-footer text-muted"><a href="#" class="btn btn-primary">Acquista</a></div>
+          <div class="card-footer" [ngClass]="{'card_footer_light':currentTheme == 'light', 'card_footer_dark':currentTheme == 'dark'}"><a href="#" class="btn"  [ngClass]="{'card_button_light':currentTheme == 'light', 'card_button_dark':currentTheme == 'dark'}">Acquista</a></div>
         </div>
       </div>
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card text-center">
-          <div class="card-header fw-bold" style="background-color: rgba(0, 0, 0, 0.05);">€99.90</div>
-          <div class="card-body">
+          <div class="card-header fw-bold" [ngClass]="{'card_header_light':currentTheme == 'light', 'card_header_dark':currentTheme == 'dark'}">€99.90</div>
+          <div class="card-body" [ngClass]="{'card_body_light':currentTheme == 'light', 'card_body_dark':currentTheme == 'dark'}">
             <h5 class="card-title">Abbonamento annuale</h5>
             <p class="card-text">Inserisci tutti gli eventi che desideri per un anno.</p>
           </div>
-          <div class="card-footer text-muted"><a href="#" class="btn btn-primary">Acquista</a></div>
+          <div class="card-footer" [ngClass]="{'card_footer_light':currentTheme == 'light', 'card_footer_dark':currentTheme == 'dark'}"><a href="#" class="btn"  [ngClass]="{'card_button_light':currentTheme == 'light', 'card_button_dark':currentTheme == 'dark'}">Acquista</a></div>
         </div>
       </div>
     </div>

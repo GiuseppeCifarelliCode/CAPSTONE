@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  currentTheme!:string
+
+  constructor(private themeSvc:ThemeService){
+    this.themeSvc.themeFilePath$.subscribe(theme =>{
+      this.currentTheme = theme
+    })
+  }
 }

@@ -1,0 +1,69 @@
+.title_light {
+  color: #FFFFFF ;
+}
+
+.button_light {
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
+}
+
+.button_light:hover {
+  background-color: #FFFFFF;
+  color:#3498db;
+}
+
+.main_light {
+  background-color: #FFFFFF;
+  color: #4b6cb7;
+}
+
+.card_header_light {
+  background-color: #F5F5F5;
+}
+
+.card_button_light {
+  background-color: #3498db;
+  color: #F5F5F5;
+}
+
+.title_dark {
+  color: #12183b;
+}
+
+.button_dark {
+  border: 2px solid #12183b;
+  color: #12183b;
+}
+
+.button_dark:hover {
+  background-color: #12183b;
+  color: #4b6cb7;
+}
+
+.main_dark {
+  background-color: #12183b ;
+  color: #4b6cb7;
+}
+
+.card_header_dark {
+  background-color: #1f2a5d;
+  border-bottom: 2px solid #12183b;
+}
+
+.card_body_dark {
+  background-color: #1f2a5d;
+}
+
+.card_footer_dark {
+  background-color: #1f2a5d;
+  border-top: 2px solid #12183b;
+}
+.card_button_dark{
+  background-color: #4b6cb7;
+  color: #12183b;
+}
+
+.card_button_dark:hover {
+  background-color: #12183b;
+  color: #4b6cb7;
+}

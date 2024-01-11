@@ -1,9 +1,15 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg" [ngClass]="{'nav_light':currentTheme == 'light', 'nav_dark':currentTheme == 'dark'}">
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
-    <a class="navbar-brand me-2" routerLink="/start">
+    <span *ngIf="currentTheme == 'light'" class="material-symbols-rounded mx-2 themeIcon" (click)="toggleTheme()">
+      dark_mode
+      </span>
+      <span *ngIf="currentTheme == 'dark'" class="material-symbols-rounded mx-2 themeIcon" (click)="toggleTheme()">
+        light_mode
+        </span>
+    <a class="navbar-brand mx-2" routerLink="/start">
       <img
         src="../../../../assets/logo.png"
         height="50"
@@ -33,12 +39,16 @@
       #buttonsNav="mdbCollapse"
     >
       <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center" [ngClass]="{'nav_center_light':currentTheme == 'light', 'nav_center_dark':currentTheme == 'dark'}" >
         <li class="nav-item">
-          <a class="nav-link" href="home">Home</a>
+          <a class="nav-link" href="home"><span class="material-symbols-rounded">
+            list
+            </span></a>
         </li>
         <li *ngIf="user" class="nav-item">
-          <a class="nav-link" href="ticketList">{{'navbarMyTickets' | translate}}</a>
+          <a class="nav-link" href="ticketList"><span class="material-symbols-rounded">
+            badge
+            </span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about">About Us</a>
@@ -52,11 +62,17 @@
       </ul>
       <!-- Right links -->
 
+      <div>
+        <ul class="navbar-nav mx-2 align-items-center">
+          <li><img *ngIf="currentLang === 'en'" src="../../../../assets/italyFlag.png" class="rounded-circle flag" width="40" height="30" alt="Italian Flag" (click)="toggleLanguage()"></li>
+          <li><img *ngIf="currentLang === 'it'" src="../../../../assets/usaFlag.png" class="rounded-circle flag" width="40" height="30" alt="English Flag" (click)="toggleLanguage()"></li>
+        </ul>
+      </div>
       <div *ngIf="!logged" class="d-flex align-items-center">
-        <button type="button" class="btn btn-link px-3 me-2">
+        <button type="button" class="btn px-3 me-2" [ngClass]="{'login_button_light':currentTheme == 'light', 'login_button_dark':currentTheme == 'dark'}">
           <a routerLink="/auth/login" routerLinkActive="active" class="nav-link" aria-current="page">Login</a>
         </button>
-        <button type="button" class="btn btn-primary me-3">
+        <button type="button" class="btn me-3" [ngClass]="{'signup_button_light':currentTheme == 'light', 'signup_button_dark':currentTheme == 'dark'}">
           <a routerLink="/auth/signUp" routerLinkActive="active" class="nav-link" aria-current="page">Sign Up For Free</a>
         </button>
       </div>
@@ -64,8 +80,6 @@
         <ul *ngIf="user" class="navbar-nav mx-2 align-items-center">
           <!-- Avatar -->
           <!-- Verificare perchè non mette le bandiere senza il Login -->
-          <li><img *ngIf="currentLang === 'en'" src="../../../../assets/italyFlag.png" height="30" alt="Italian Flag" (click)="toggleLanguage()"></li>
-          <li><img *ngIf="currentLang === 'it'" src="../../../../assets/usaFlag.png" height="30" alt="English Flag" (click)="toggleLanguage()"></li>
           <li class="fw-bold">{{user.Username}}</li>
           <li mdbDropdown class="nav-item dropdown">
             <a
@@ -94,7 +108,7 @@
             </ul>
           </li>
         </ul>
-        <button *ngIf="logged" type="button" class="btn btn-primary me-3" (click)="logout()" >
+        <button *ngIf="logged" type="button" class="btn btn-primary me-3" (click)="logout()" [ngClass]="{'button_light':currentTheme == 'light', 'button_dark':currentTheme == 'dark'}" >
           Logout
         </button>
       </div>

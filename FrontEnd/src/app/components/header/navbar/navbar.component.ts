@@ -7,29 +7,39 @@ import { HomeService } from 'src/app/pages/home/home.service';
 import { Token } from '@angular/compiler';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/language.service';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
+
 export class NavbarComponent {
   logged!: boolean;
   user!: Iuser | null;
   decodedToken!: any;
   currentLang!:string;
+  currentTheme!:string
 
   constructor(
     public authSvc: AuthService,
     private homeSvc: HomeService,
     private translate: TranslateService,
-    public languageSvc:LanguageService
+    public languageSvc:LanguageService,
+    private themeSvc:ThemeService
   ) {
     this.languageSvc.currentLanguage$.subscribe(lang =>{
       this.currentLang = lang
       console.log(this.currentLang);
 
       this.translate.use(this.currentLang)
+    })
+
+    this.themeSvc.themeFilePath$.subscribe(theme =>{
+      this.currentTheme = theme
+      console.log(this.currentTheme);
+
     })
 
     // Verifico se un utente è loggato
@@ -69,5 +79,11 @@ export class NavbarComponent {
     this.translate.use(this.currentLang)
     this.languageSvc.languageSubject.next(this.currentLang)
     localStorage.setItem('selectedLanguage', this.currentLang);
+  }
+
+  toggleTheme(){
+    this.currentTheme = this.currentTheme === 'dark'?'light':'dark'
+    this.themeSvc.themeFilePathSubject.next(this.currentTheme)
+    localStorage.setItem('theme', this.currentTheme)
   }
 }

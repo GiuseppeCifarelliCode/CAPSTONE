@@ -1,0 +1,93 @@
+.themeIcon:hover {
+  cursor: pointer;
+}
+
+.nav_dark {
+  background-color: #12183b;
+  color: #4b6cb7;
+}
+
+.nav_center_dark a {
+  color: #4b6cb7;
+}
+
+.nav_center_dark a:hover{
+  color: #4b6cb7;
+  opacity: 0.7;
+}
+
+.button_dark {
+  background-color: #4b6cb7;
+  color: #12183b;
+  font-weight: bold;
+}
+
+.button_dark:hover {
+  background-color: #4b6cb7;
+  color: #12183b;
+  font-weight: bold;
+}
+
+.login_button_dark {
+  color: #4b6cb7 ;
+}
+
+.login_button_dark:hover{
+    background-color: #4b6cb7 !important;
+    color: #12183b !important;
+}
+
+.signup_button_dark {
+  background-color: #4b6cb7;
+  color: #12183b ;
+}
+
+.signup_button_dark:hover{
+  background-color: #4b6cb7;
+  color: #12183b ;
+  opacity: 0.7;
+}
+
+.nav_light {
+  background-color: #F5F5F5;
+  color: black;
+}
+
+.nav_center_light a {
+  color: black;
+}
+
+.nav_center_light a:hover {
+  color: black;
+  opacity: 0.7;
+}
+
+.button_light {
+  background-color: #3498db;
+  color: #F5F5F5;
+}
+
+.login_button_light {
+  background-color: #F5F5F5;
+  color: black;
+}
+
+.login_button_light:hover {
+  background-color: #4b6cb7;
+  color: #F5F5F5;
+}
+
+.signup_button_light {
+  background-color: #4b6cb7;
+  color: #F5F5F5;
+}
+
+.signup_button_light:hover {
+  background-color: #4b6cb7;
+  color: #F5F5F5;
+  opacity: 0.7;
+}
+
+.flag:hover {
+  cursor: pointer;
+}

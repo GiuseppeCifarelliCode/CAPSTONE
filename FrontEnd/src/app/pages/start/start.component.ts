@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/language.service';
 import { Iuser } from 'src/app/models/iuser';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-start',
@@ -15,10 +16,16 @@ export class StartComponent {
   decodedToken:any
   user!:Iuser
   currentLanguage!:string;
+  currentTheme!:string
 
-  constructor(private homeSvc:HomeService, private JwtHelper:JwtHelperService,private translate:TranslateService, private languageSvc:LanguageService){}
+  constructor(private homeSvc:HomeService, private JwtHelper:JwtHelperService,private translate:TranslateService, private languageSvc:LanguageService, private themeSvc:ThemeService){}
 
   ngOnInit(){
+
+    this.themeSvc.themeFilePath$.subscribe(theme =>{
+      this.currentTheme = theme
+    })
+
     this.languageSvc.currentLanguage$.subscribe(lang => {
       this.currentLanguage = lang
       this.translate.use(this.currentLanguage)
