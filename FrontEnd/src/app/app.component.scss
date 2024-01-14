@@ -1,2 +1,13 @@
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  opacity: 0.7;
+  /* Aggiungi altri stili a tuo piacimento */
+}
 
+.fixed-navbar:hover{
+  opacity: 1;
+}
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/language.service';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-about',
@@ -10,8 +11,12 @@ import { LanguageService } from 'src/app/language.service';
 export class AboutComponent {
 
   currentLanguage !: string
-  constructor(private translate:TranslateService, private languageSvc:LanguageService){}
+  currentTheme!:string
+  constructor(private translate:TranslateService, private languageSvc:LanguageService, private themeSvc:ThemeService){}
   ngOnInit(){
+    this.themeSvc.themeFilePathSubject.subscribe(theme =>{
+      this.currentTheme = theme
+    })
     this.languageSvc.currentLanguage$.subscribe(lang => {
       this.currentLanguage = lang
       this.translate.use(this.currentLanguage)

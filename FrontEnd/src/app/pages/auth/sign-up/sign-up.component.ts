@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,10 +15,14 @@ export class SignUpComponent {
   passwordError:string = ""
   user!:Iuser
   avatarData!:string
+  currentTheme!:string
 
-  constructor(private fb:FormBuilder, private authSvc:AuthService, private router:Router){}
+  constructor(private fb:FormBuilder, private authSvc:AuthService, private router:Router, private themeSvc:ThemeService){}
 
   ngOnInit(){
+    this.themeSvc.themeFilePathSubject.subscribe(theme => {
+      this.currentTheme = theme
+    })
     this.signUpForm = this.fb.group({
         Name:this.fb.control(null, [Validators.required]),
         Surname:this.fb.control(null, [Validators.required]),

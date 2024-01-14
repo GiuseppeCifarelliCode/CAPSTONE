@@ -1,4 +1,4 @@
-<main class="mt-5">
+<main class="pt-5 rounded-4" [ngClass]="{'main_light':currentTheme == 'light', 'main_dark':currentTheme == 'dark'}">
   <div class="container">
     <!--Section: Content-->
     <section>
@@ -14,7 +14,7 @@
 
         <div class="col-md-6 gx-5 mb-4">
           <h4><strong>{{"aboutFirstTitle" | translate}}</strong></h4>
-          <p class="text-muted" [innerHTML]="'aboutWho'|translate">
+          <p [ngClass]="{'text_light':currentTheme == 'light', 'text_dark':currentTheme == 'dark'}" [innerHTML]="'aboutWho'|translate">
           </p>
         </div>
       </div>
@@ -37,7 +37,7 @@
 
         <div class="col-md-6 gx-5 mb-4">
           <h4><strong>{{"aboutSecondTitle" | translate}}</strong></h4>
-          <p class="text-muted" [innerHTML]="'aboutProject' |translate">
+          <p [innerHTML]="'aboutProject' |translate" [ngClass]="{'text_light':currentTheme == 'light', 'text_dark':currentTheme == 'dark'}">
           </p>
         </div>
       </div>

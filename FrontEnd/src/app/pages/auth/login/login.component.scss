@@ -1,0 +1,42 @@
+.main_light {
+  background-color: #FFFFFF;
+  color: #297fb8;
+}
+
+.button_light {
+  background-color: #3498db;
+}
+
+.button_icon_light {
+  background-color: #F5F5F5;
+  color: #297fb8;
+}
+
+.button_icon_light:hover{
+  background-color: #297fb8;
+  color: #F5F5F5;
+}
+.main_dark {
+  background-color: #12183b;
+  color: #4b6cb7;
+}
+
+.label_dark {
+  color: #4b6cb7 !important;
+}
+
+.button_dark {
+  background-color: #4b6cb7;
+  color: #12183b;
+  font-weight: bold;
+}
+
+.button_icon_dark {
+  background-color: #1f2a5d;
+  color: #4b6cb7;
+}
+
+.button_icon_dark:hover {
+  background-color: #4b6cb7;
+  color: #1f2a5d;
+}

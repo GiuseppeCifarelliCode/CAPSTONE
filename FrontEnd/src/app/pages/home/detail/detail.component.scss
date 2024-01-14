@@ -47,3 +47,68 @@
   background-color: #2980b9;
   color: white;
 }
+
+.main_light {
+  background-color: #FFFFFF;
+  color: #297fb8;
+}
+
+.button_light {
+  background-color: #3498db;
+  color: #F5F5F5;
+}
+
+.comment_light {
+  background-color: #3498db;
+  color: #F5F5F5;
+}
+.main_dark {
+  background-color: #12183b;
+  color: #6fa3d3;
+}
+
+.header_dark {
+  border-bottom: 2px solid #4b6cb7;
+}
+.button_dark {
+  background-color: #4b6cb7;
+  color: #12183b;
+  font-weight: bold;
+}
+
+.button_dark:hover {
+  background-color: #1f2a5d;
+  color: #4b6cb7;
+  font-weight: bold;
+}
+
+.label_dark {
+  color: #4b6cb7;
+}
+
+.footer_dark {
+  border-top: 2px solid #4b6cb7;
+}
+
+.button_close_dark {
+  background-color: #1f2a5d;
+  color: #4b6cb7;
+}
+
+.button_buy_dark {
+  background-color: #4b6cb7;
+  color: #12183b;
+}
+
+.card_dark {
+  background-color: #1f2a5d;
+}
+
+.comment_dark {
+  background-color: #4b6cb7;
+  color: #12183b;
+}
+
+.label_dark {
+  color: #6fa3d3 !important;
+}

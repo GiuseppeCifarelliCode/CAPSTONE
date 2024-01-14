@@ -8,6 +8,7 @@ import { Iattendance } from 'src/app/models/iattendance';
 import { Ireview } from 'src/app/models/ireview';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-detail',
@@ -19,6 +20,7 @@ export class DetailComponent {
   eventId!:number
   event!:Ievent
   category!:Icategory[]
+  currentTheme!:string
   decodedToken:any
   user!:Iuser
   attendance!:Iattendance
@@ -36,9 +38,12 @@ export class DetailComponent {
     IdEvent: 0,
     IdUser: 0 }
 
-  constructor(private route:ActivatedRoute, private homeSvc:HomeService, private fb:FormBuilder, private JwtHelper:JwtHelperService){}
+  constructor(private route:ActivatedRoute, private homeSvc:HomeService, private fb:FormBuilder, private JwtHelper:JwtHelperService, private themeSvc:ThemeService){}
 
   ngOnInit(): void {
+    this.themeSvc.themeFilePathSubject.subscribe(theme =>{
+      this.currentTheme = theme
+    })
     this.route.params.subscribe(params => {
       this.eventId = +params['id']; // Converte l'ID dalla stringa a un numero
       this.getEventById();

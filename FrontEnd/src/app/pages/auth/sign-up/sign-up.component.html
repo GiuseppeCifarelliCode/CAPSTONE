@@ -1,17 +1,17 @@
-<div class="container m-4 w-50 mx-auto">
-  <form [formGroup]="signUpForm">
+<div class="rounded-4" [ngClass]="{'main_light':currentTheme == 'light', 'main_dark':currentTheme == 'dark'}">
+  <form [formGroup]="signUpForm" class="w-50 mx-auto p-3">
     <!-- 2 column grid layout with text inputs for the first and last names -->
     <div class="row mb-4">
       <div class="col">
         <mdb-form-control>
           <input mdbInput type="text" id="name" class="form-control" formControlName="Name" />
-          <label mdbLabel class="form-label" for="name">First name</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="name">First name</label>
         </mdb-form-control>
       </div>
       <div class="col">
         <mdb-form-control class="form-outline">
           <input mdbInput type="text" id="surname" class="form-control" formControlName="Surname" />
-          <label mdbLabel class="form-label" for="surname">Last name</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="surname">Last name</label>
         </mdb-form-control>
       </div>
     </div>
@@ -21,21 +21,21 @@
       <div class="col">
         <mdb-form-control>
           <input mdbInput type="text" id="birthplace" class="form-control" formControlName="BirthPlace" />
-          <label mdbLabel class="form-label" for="birthplace">Birth Place</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="birthplace">Birth Place</label>
         </mdb-form-control>
       </div>
       <div class="col">
         <mdb-form-control class="form-outline">
           <input mdbInput type="date" id="birthdate" class="form-control" formControlName="BirthDate" />
-          <label mdbLabel class="form-label" for="birthdate">Birth Date</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="birthdate">Birth Date</label>
         </mdb-form-control>
       </div>
     </div>
 
     <!-- Avatar input -->
 
-      <label class="form-label" for="avatar">Avatar</label>
-      <input type="file" class="form-control" id="avatar" formControlName="Avatar"  (change)="onFileSelected($event)" accept="image/*"/>
+      <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" class="form-label" for="avatar">Avatar</label>
+      <input [ngClass]="{'input_avatar_light':currentTheme == 'light', 'input_avatar_dark':currentTheme == 'dark'}" type="file" class="form-control" id="avatar" formControlName="Avatar"  (change)="onFileSelected($event)" accept="image/*"/>
 
     <!-- Username & Email inputs -->
 
@@ -43,13 +43,13 @@
       <div class="col">
         <mdb-form-control>
           <input mdbInput type="text" id="username" class="form-control" formControlName="Username" />
-          <label mdbLabel class="form-label" for="username">Username</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="username">Username</label>
         </mdb-form-control>
       </div>
       <div class="col">
         <mdb-form-control>
           <input mdbInput type="email" id="email" class="form-control" formControlName="Email" />
-          <label mdbLabel class="form-label" for="email">Email address</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="email">Email address</label>
         </mdb-form-control>
       </div>
     </div>
@@ -57,7 +57,7 @@
      <!-- Number input -->
   <mdb-form-control class="form-outline mb-4">
     <input mdbInput type="number" id="phone" class="form-control" formControlName="Phone"/>
-    <label mdbLabel class="form-label" for="phone">Phone</label>
+    <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="phone">Phone</label>
   </mdb-form-control>
 
     <!-- Password input -->
@@ -66,13 +66,13 @@
       <div class="col">
         <mdb-form-control class="mb-4">
           <input mdbInput type="password" id="password" class="form-control" formControlName="Password" />
-          <label mdbLabel class="form-label" for="password">Password</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="password">Password</label>
         </mdb-form-control>
       </div>
       <div class="col">
         <mdb-form-control class="mb-4">
           <input mdbInput type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword" />
-          <label mdbLabel class="form-label" for="confirmPassword">Repeat Password</label>
+          <label [ngClass]="{'label_light':currentTheme == 'light', 'label_dark':currentTheme == 'dark'}" mdbLabel class="form-label" for="confirmPassword">Repeat Password</label>
         </mdb-form-control>
       </div>
     </div>
@@ -95,24 +95,24 @@
     </div>
 
     <!-- Submit button -->
-    <button mdbRipple type="submit" class="btn btn-primary btn-block mb-4" (click)="signUp()">Registrati</button>
+    <button [ngClass]="{'button_light':currentTheme == 'light', 'button_dark':currentTheme == 'dark'}" mdbRipple type="submit" class="btn btn-primary btn-block mb-4" (click)="signUp()">Registrati</button>
 
     <!-- Register buttons -->
     <div class="text-center">
       <p>or sign up with:</p>
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+      <button [ngClass]="{'button_icon_light':currentTheme == 'light', 'button_icon_dark':currentTheme == 'dark'}" mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
         <i class="fab fa-facebook-f"></i>
       </button>
 
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+      <button [ngClass]="{'button_icon_light':currentTheme == 'light', 'button_icon_dark':currentTheme == 'dark'}" mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
         <i class="fab fa-google"></i>
       </button>
 
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+      <button [ngClass]="{'button_icon_light':currentTheme == 'light', 'button_icon_dark':currentTheme == 'dark'}" mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
         <i class="fab fa-twitter"></i>
       </button>
 
-      <button mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
+      <button [ngClass]="{'button_icon_light':currentTheme == 'light', 'button_icon_dark':currentTheme == 'dark'}" mdbRipple type="button" class="btn btn-secondary btn-floating mx-1">
         <i class="fab fa-github"></i>
       </button>
     </div>

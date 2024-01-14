@@ -6,6 +6,7 @@ import { HomeService } from './home.service';
 import { Icategory } from 'src/app/models/icategory';
 import { Iattendance } from 'src/app/models/iattendance';
 import { Iuser } from 'src/app/models/iuser';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-home',
@@ -22,10 +23,14 @@ export class HomeComponent {
   attendance!:Iattendance
   trueAttendance!:Iattendance[]
   title:string = 'Eventi Oggi'
+  currentTheme!:string
 
-  constructor(private homeSvc:HomeService, private router:Router, public JwtHelper:JwtHelperService){}
+  constructor(private homeSvc:HomeService, private router:Router, public JwtHelper:JwtHelperService, private themeSvc:ThemeService){}
 
   ngOnInit(){
+    this.themeSvc.themeFilePathSubject.subscribe(theme  =>{
+      this.currentTheme = theme
+    })
     if(localStorage.getItem('token')){
       const token = localStorage.getItem('token')
       if(token) {

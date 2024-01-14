@@ -5,6 +5,7 @@ import { HomeService } from '../home/home.service';
 import { Iattendance } from 'src/app/models/iattendance';
 import { Ievent } from 'src/app/models/ievent';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ThemeService } from 'src/app/theme.service';
 
 @Component({
   selector: 'app-ticket-list',
@@ -19,11 +20,14 @@ export class TicketListComponent {
   trueAttendance!:Iattendance[]
   events:Ievent[] = []
   randomNumber!:string
+  currentTheme!:String
 
-  constructor(private homeSvc:HomeService, private JwtHelper:JwtHelperService){}
+  constructor(private homeSvc:HomeService, private JwtHelper:JwtHelperService, private themeSvc:ThemeService){}
 
   ngOnInit(){
-
+    this.themeSvc.themeFilePathSubject.subscribe(theme =>{
+      this.currentTheme = theme
+    })
     if(localStorage.getItem('token')){
       const token = localStorage.getItem('token')
       if(token) {
