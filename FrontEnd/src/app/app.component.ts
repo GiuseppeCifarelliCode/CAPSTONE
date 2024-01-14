@@ -12,6 +12,6 @@ export class AppComponent {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const offset = document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this.isNavbarFixed = offset > 25; // Puoi regolare questo valore in base a quando vuoi che la navbar diventi fissa
+    this.isNavbarFixed = offset > 2; // Puoi regolare questo valore in base a quando vuoi che la navbar diventi fissa
   }
 }
